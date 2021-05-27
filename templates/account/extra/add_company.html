@@ -1,0 +1,209 @@
+{% extends "account/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<main id="template-contact" data-bgcolor="Biljana Devic">
+
+    <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <section class="Hero is-section">
+        <div class="is-container">
+            <div class="is-grid is-flex-center">
+                <div class="is-width-2-3@l is-width-5-6@m">
+                    <header class="Header">
+                        <h2 class="Subtitle is-h3">Design. Ideas. Creativity.</h2>
+                    </header>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="SecondSection">
+        <section class="ContactForm is-section-small">
+            <div class="is-container">
+                <div class="is-grid is-flex-center">
+                    <div class="is-width-2-3@l is-width-5-6@m">
+                        <p class="is-h5">Schedule a free consultation at <a
+                                href="mailto:crestsource@gmail.com">crestsource@gmail.com</a>, or fill out the form and
+                            we will follow up with you shortly.</p>
+                        <div class="is-divider is-divider-bg-light"></div>
+                        <div class="container-fluid">
+
+                            <form class="Form is-grid" action="{% url 'add_company' %}" method="POST">{% csrf_token %}
+                                <div class="is-width-1-1">
+                                    <legend class="is-legend">Company Details</legend>
+                                    {% if companies %}
+                                    {% for c in companies %}
+                                        {% if c.user == user %}
+                                        <h6>{{ c }}</h6>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% endif %}
+                                    {% if user.profile.company_status %}
+                                    <p class="Terms is-text-meta">
+                                        You have last updated your company details @ {{ user.profile.modified_date }}<br />
+                                    </p>
+                                    {% else %}
+                                    <p class="Terms is-text-meta">
+                                        Fill in your details to get a quote from our team for the services you wish to
+                                        avail.<br />
+                                        By filling in the form, you agree to our Privacy Policy, including our cookie
+                                        use.
+                                    </p>
+                                    {% endif %}
+
+                                </div>
+                                
+                                
+
+                                <div class="is-width-1-2@s">
+                                    <div class="is-margin">
+                                        <label class="is-form-label" for="contact-company">Company Name</label>
+                                        <div class="is-form-controls">
+                                            {{ company_form.name }}
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="is-width-1-2@s">
+                                    <div class="is-margin">
+                                        <label class="is-form-label" for="contact-company">Company Profile</label>
+                                        <div class="is-form-controls">
+                                            {{ company_form.domain }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="is-width-1-2@s">
+                                    <div class="is-margin">
+                                        <label class="is-form-label" for="contact-company">Address Line</label>
+                                        <div class="is-form-controls">
+                                            {{ company_form.address_line }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="is-width-1-2@s">
+                                    <div class="is-margin">
+                                        <label class="is-form-label" for="contact-company">City</label>
+                                        <div class="is-form-controls">
+                                            {{ company_form.city }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="is-width-1-2@s">
+                                    <div class="is-margin">
+                                        <label class="is-form-label" for="contact-company">State</label>
+                                        <div class="is-form-controls">
+                                            {{ company_form.state }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="is-width-1-2@s">
+                                    <div class="is-margin">
+                                        <label class="is-form-label" for="contact-company">Country</label>
+                                        <div class="is-form-controls">
+                                            {{ company_form.country }}
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                                <div class="is-width-1-2@s">
+                                    <div class="is-margin">
+                                        <label class="is-form-label" for="contact-company">Established In</label>
+                                        <div class="is-form-controls">
+                                            {{ company_form.established_in }}
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="is-width-1-1">
+                                    <div class="FormDivider-1 is-divider is-divider-bg-light"></div>
+                                </div>
+
+
+
+
+                                <div class="is-width-1-1 is-text-center is-margin-medium-top">
+                                    <button type="submit" class="SubmitBtn is-button is-bg-color-blue">Add Company </button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </section>
+        <section class="GetInTouch is-section-small is-margin-medium-top">
+            <div class="is-container">
+                <div class="is-grid is-grid-collapse is-flex-center">
+                    <div class="is-width-2-3@l is-width-5-6@m">
+                        <div class="is-grid is-child-width-1-2@s is-grid-match">
+                            <div class="is-grid-item">
+                                <div class="NewBusiness is-light">
+                                    <h5 class="Title is-h6">NEW BUSINESS</h5>
+                                    <p class="ContactName is-text-lead">Nasik</p>
+                                    <a href="callto://+919421487587" class="is-text is-display-block"><img
+                                            src="{% static 'site/templates/assets/img/icons/phone.svg' %}"
+                                            class="is-img" alt="phone icon"> +91 9421-487-587</a>
+                                    <a href="skype:d0b4d8746f0661af?call" class="is-text is-display-block"
+                                        hidden="hidden"><img src="../site/templates/assets/img/icons/skype.svg"
+                                            class="is-img" alt="skype icon"> TMS</a>
+                                </div>
+                            </div>
+                            <div class="is-grid-item">
+                                <div class="Support">
+                                    <h5 class="Title is-h6">Project</h5>
+                                    <p class="Text is-text-lead">Start Project</p>
+                                    <a href="#" class="is-link">Request Quote</a>
+                                    <p class="Text is-text-lead">Track Project</p>
+                                    <a href="#" class="is-link">Sign In</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="GetInTouch is-section-large">
+            <div class="is-container">
+                <div class="is-grid is-grid-collapse is-flex-center">
+                    <div class="is-width-2-3@l">
+                        <div class="Content">
+                            <header class="Header">
+                                <h6 class="Title is-h6">GET IN TOUCH</h6>
+                            </header>
+                            <div class="is-grid is-child-width-1-2@s">
+                                <div class="is-grid-item">
+                                    <div class="PhoneMail">
+                                        <h5 class="Title is-h5">Phone and Email</h5>
+                                        <a href="mailto:crestsource@gmail.com"
+                                            class="is-text is-display-block">crestsource@gmail.com</a>
+                                        <a href="callto://+919421487587" class="is-text">+91 9421-487-587</a>
+                                    </div>
+                                </div>
+                                <div class="is-grid-item">
+                                    <div class="Address">
+                                        <h5 class="Title is-h5">Address</h5>
+                                        <p class="Text is-text">Nasik, Maharashtra.<br> India</p>
+                                        <a href="https://goo.gl/maps/TEWweqGy38p" class="is-link" target="_blank"
+                                            hidden="hidden">Get Directions</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock %}
